@@ -18,6 +18,7 @@ let inputValue = ref<number>()
 let numberOfGuesses = 0
 let heating: string
 let guessData: IGuessData[] = []
+let showCongrats = false
 
 function submitGuess() {
   if (inputValue.value) {
@@ -29,6 +30,9 @@ function submitGuess() {
       heat: heating
     }
     guessData.push(newGuessData)
+    if (heating === 'Correct') {
+      showCongrats = true
+    }
     inputValue.value = undefined
   }
 }
@@ -51,6 +55,8 @@ function submitGuess() {
       :max="max"
       step="1"
       required
+      :disabled="showCongrats"
+      :aria-disabled="showCongrats"
       v-model="inputValue"
       @input="
         () => {
@@ -65,10 +71,10 @@ function submitGuess() {
         }
       "
     />
-    <button type="submit">Guess</button>
+    <button type="submit" :disabled="showCongrats" :aria-disabled="showCongrats">Guess</button>
   </form>
 
-  <div v-show="heating === 'Correct'">
+  <div v-show="showCongrats">
     <p>
       Well done! You found the number in {{ numberOfGuesses }}
       {{ numberOfGuesses === 1 ? 'guess' : 'guesses' }}.
