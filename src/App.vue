@@ -1,14 +1,37 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import setHeat from './utils/setHeat'
+import PreviousGuess from './components/PreviousGuess.vue'
 
-//import HelloWorld from './components/HelloWorld.vue'
-//import TheWelcome from './components/TheWelcome.vue'
+interface IGuessData {
+  guessNumber: number
+  inputNumber: number
+  heat: string
+}
+
 const min = 1
 const max = 100
 const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min
 console.log(randomNumber)
 
-let inputValue = ref<number>(min)
+let inputValue = ref<number>()
+let numberOfGuesses = 0
+let heating: string
+let guessData: IGuessData[] = []
+
+function submitGuess() {
+  if (inputValue.value) {
+    heating = setHeat(inputValue.value, randomNumber)
+    numberOfGuesses += 1
+    const newGuessData = {
+      guessNumber: numberOfGuesses,
+      inputNumber: inputValue.value,
+      heat: heating
+    }
+    guessData.push(newGuessData)
+    inputValue.value = undefined
+  }
+}
 </script>
 
 <template>
@@ -16,7 +39,7 @@ let inputValue = ref<number>(min)
   <p>The computer is thinking of a number between {{ min }} and {{ max }} (inclusive)</p>
   <p>Guess what that number is.</p>
 
-  <form>
+  <form @submit.prevent="submitGuess">
     <label for="guess">Type a number</label>
     <input
       type="number"
@@ -31,17 +54,29 @@ let inputValue = ref<number>(min)
       v-model="inputValue"
       @input="
         () => {
-          if (inputValue < min) {
-            inputValue = min
-          }
-          if (inputValue > max) {
-            inputValue = max
+          if (inputValue) {
+            if (inputValue < min) {
+              inputValue = min
+            }
+            if (inputValue > max) {
+              inputValue = max
+            }
           }
         }
       "
     />
     <button type="submit">Guess</button>
   </form>
+
+  <ul v-if="numberOfGuesses > 0">
+    <PreviousGuess
+      v-for="guesses in guessData"
+      :key="guesses.guessNumber"
+      :guessNumber="guesses.guessNumber"
+      :inputNumber="guesses.inputNumber"
+      :heat="guesses.heat"
+    />
+  </ul>
 </template>
 
 <style scoped>
