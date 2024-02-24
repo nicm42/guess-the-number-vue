@@ -68,6 +68,14 @@ function submitGuess() {
     <button type="submit">Guess</button>
   </form>
 
+  <div v-show="heating === 'Correct'">
+    <p>
+      Well done! You found the number in {{ numberOfGuesses }}
+      {{ numberOfGuesses === 1 ? 'guess' : 'guesses' }}.
+    </p>
+    <p>Refresh the page to play again.</p>
+  </div>
+
   <ul v-if="numberOfGuesses > 0">
     <PreviousGuess
       v-for="guesses in guessData"
