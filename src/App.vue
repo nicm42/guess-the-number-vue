@@ -1,20 +1,47 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import { ref } from 'vue'
+
+//import HelloWorld from './components/HelloWorld.vue'
+//import TheWelcome from './components/TheWelcome.vue'
+const min = 1
+const max = 100
+const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min
+console.log(randomNumber)
+
+let inputValue = ref<number>(min)
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <h1>Guess the Number</h1>
+  <p>The computer is thinking of a number between {{ min }} and {{ max }} (inclusive)</p>
+  <p>Guess what that number is.</p>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <form>
+    <label for="guess">Type a number</label>
+    <input
+      type="number"
+      inputmode="numeric"
+      pattern="[0-9]*"
+      id="guess"
+      name="guess"
+      :min="min"
+      :max="max"
+      step="1"
+      required
+      v-model="inputValue"
+      @input="
+        () => {
+          if (inputValue < min) {
+            inputValue = min
+          }
+          if (inputValue > max) {
+            inputValue = max
+          }
+        }
+      "
+    />
+    <button type="submit">Guess</button>
+  </form>
 </template>
 
 <style scoped>
