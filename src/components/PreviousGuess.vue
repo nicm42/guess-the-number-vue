@@ -10,7 +10,7 @@ defineProps<{
   <li class="history">
     <span class="history-counter">{{ guessNumber }}</span>
     <span class="history-guess">{{ inputNumber }}</span>
-    <span class="history-heat">{{ heat }}</span>
+    <span class="history-heat" :class="heat.toLowerCase()">{{ heat }}</span>
   </li>
 </template>
 
