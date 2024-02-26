@@ -146,17 +146,26 @@ button {
   background-color: $buttonBackground;
   font-size: $standardFontSize;
   cursor: pointer;
-}
 
-button:hover {
-  background-color: $buttonHover;
-}
+  &:hover,
+  &:focus {
+    background-color: $buttonHover;
+  }
 
-button:active {
-  position: relative;
-  left: 2px;
-  top: 2px;
-  color: $defaultColour;
+  &:active {
+    position: relative;
+    left: 2px;
+    top: 2px;
+    color: $defaultColour;
+  }
+
+  &:disabled {
+    cursor: auto;
+
+    &:hover {
+      background-color: $buttonBackground;
+    }
+  }
 }
 
 .congrats {
