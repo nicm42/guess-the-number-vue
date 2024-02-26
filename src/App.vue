@@ -127,8 +127,10 @@ function submitGuess() {
 form {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
   justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
 }
 
 input {
@@ -160,13 +162,11 @@ button:active {
 .congrats {
   margin-top: 2em;
   font-size: 1.3em;
-  opacity: 0;
-  transition: opacity 1.5s ease-in-out;
 }
 
 .temperature {
   margin: 0;
-  margin-top: 2.5em;
+  margin-top: 0.5em;
   padding: 0;
   display: inline-block;
   list-style-type: none;
