@@ -100,24 +100,16 @@ function submitGuess() {
 .min,
 .max {
   position: relative;
-}
 
-.min::after,
-.max::after {
-  content: '';
-  position: absolute;
-  left: -2px;
-  bottom: 3px;
-  height: 3px;
-  background-color: $buttonBorder;
-}
-
-.min::after {
-  width: 0.5em;
-}
-
-.max::after {
-  width: 1.5em;
+  &::after {
+    content: '';
+    position: absolute;
+    left: -2px;
+    bottom: 3px;
+    width: 90%;
+    height: 3px;
+    background-color: $buttonBorder;
+  }
 }
 
 .instruction {

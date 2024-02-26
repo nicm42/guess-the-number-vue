@@ -37,6 +37,35 @@ defineProps<{
   }
 }
 
+//All the elements in each li
+.history-counter {
+  display: inline-block;
+  width: 1.5em;
+  color: $defaultColour;
+  text-align: right;
+
+  &::after {
+    content: ')';
+  }
+}
+
+.history-guess {
+  display: inline-block;
+  margin-left: 1em;
+  padding: 0.25em;
+  height: $historySize;
+  width: $historySize;
+  line-height: $historySize;
+  border-radius: 50%;
+  text-align: center;
+  background-color: $historyBackground;
+  color: $defaultColour;
+}
+
+.history-heat {
+  padding-left: 1em;
+}
+
 //Colours for guesses
 .correct {
   font-weight: bold;
@@ -60,34 +89,5 @@ defineProps<{
 
 .freezing {
   color: $freezing;
-}
-
-//All the elements in each li
-.history-counter {
-  display: inline-block;
-  width: 1.5em;
-  color: $defaultColour;
-  text-align: right;
-}
-
-.history-counter::after {
-  content: ')';
-}
-
-.history-guess {
-  display: inline-block;
-  margin-left: 1em;
-  padding: 0.25em;
-  height: $historySize;
-  width: $historySize;
-  line-height: $historySize;
-  border-radius: 50%;
-  text-align: center;
-  background-color: $historyBackground;
-  color: $defaultColour;
-}
-
-.history-heat {
-  padding-left: 1em;
 }
 </style>
