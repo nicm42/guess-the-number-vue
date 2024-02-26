@@ -40,8 +40,11 @@ function submitGuess() {
 
 <template>
   <h1>Guess the Number</h1>
-  <p>The computer is thinking of a number between {{ min }} and {{ max }} (inclusive)</p>
-  <p>Guess what that number is.</p>
+  <p>
+    The computer is thinking of a number between <span class="min">{{ min }}</span> and
+    <span class="max">{{ max }}</span> (inclusive)
+  </p>
+  <p class="instruction">Guess what that number is.</p>
 
   <form @submit.prevent="submitGuess">
     <label for="guess">Type a number</label>
@@ -74,7 +77,7 @@ function submitGuess() {
     <button type="submit" :disabled="showCongrats" :aria-disabled="showCongrats">Guess</button>
   </form>
 
-  <div v-show="showCongrats">
+  <div class="congrats" v-show="showCongrats">
     <p>
       Well done! You found the number in {{ numberOfGuesses }}
       {{ numberOfGuesses === 1 ? 'guess' : 'guesses' }}.
@@ -82,7 +85,7 @@ function submitGuess() {
     <p>Refresh the page to play again.</p>
   </div>
 
-  <ul v-if="numberOfGuesses > 0">
+  <ul class="temperature" v-if="numberOfGuesses > 0">
     <PreviousGuess
       v-for="guesses in guessData"
       :key="guesses.guessNumber"
@@ -93,31 +96,81 @@ function submitGuess() {
   </ul>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
+<style scoped lang="scss">
+.min,
+.max {
+  position: relative;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.min::after,
+.max::after {
+  content: '';
+  position: absolute;
+  left: -2px;
+  bottom: 3px;
+  height: 3px;
+  background-color: $buttonBorder;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+.min::after {
+  width: 0.5em;
+}
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
+.max::after {
+  width: 1.5em;
+}
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+.instruction {
+  font-style: italic;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+input {
+  padding: 0.4em;
+  font-size: $standardFontSize;
+}
+
+button {
+  margin-left: 0.5em;
+  padding: 0.5em 1em;
+  border: 1px solid $buttonBorder;
+  border-radius: 0.25em;
+  background-color: $buttonBackground;
+  font-size: $standardFontSize;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: $buttonHover;
+}
+
+button:active {
+  position: relative;
+  left: 2px;
+  top: 2px;
+  color: $defaultColour;
+}
+
+.congrats {
+  margin-top: 2em;
+  font-size: 1.3em;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+
+.temperature {
+  margin: 0;
+  margin-top: 2.5em;
+  padding: 0;
+  display: inline-block;
+  list-style-type: none;
+  text-align: left;
+  rotate: x 180deg;
 }
 </style>
