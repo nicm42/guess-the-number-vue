@@ -1,46 +1,45 @@
-# guess-the-number-vue
+# Guess The Number
 
-This template should help get you started developing with Vue 3 in Vite.
+A game where you guess the number, but it tells you how warm you are, rather than higher or lower
 
-## Recommended IDE Setup
+## Table of contents
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- [General info](#general-info)
+- [Screenshots](#screenshots)
+- [Technologies](#technologies)
+- [Setup](#setup)
+- [Status](#status)
 
-## Type Support for `.vue` Imports in TS
+## General info
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+A standard guess the number between 1 and 100 game. However, it won't tell you whether your guess is higher or lower but how hot/cold it is based on how close you are. I originally wrote this in JavaScript, then TypeScript. This version I used to test out Vue.
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+## Screenshots
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+![Screenshot Mobile](screenshot_mobile.png)
+![Screenshot Desktop](screenshot_desktop.png)
 
-## Customize configuration
+## Technologies
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+- Vue
+- TypeScript
+- SCSS
+- Vite
 
-## Project Setup
+## Setup
 
-```sh
+To view this project visit the [demo](https://guess-the-number-vue.pages.dev/) or download the files, open a terminal in that folder and install locally using npm:
+
+```
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+Then run the app locally:
 
-```sh
+```
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+## Status
 
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+Project is: _finished_
